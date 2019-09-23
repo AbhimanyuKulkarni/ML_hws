@@ -3,9 +3,10 @@
 - each item has two continuous features x 2 R2
 - the class label is binary and encoded as y 2 f0; 1g
 - data files are in plaintext with one labeled item per line, separated by whitespace:
-                                x11 x12 y1
-                                 :   :   :
-                                xn1 xn2 yn
+                                
+                                |x11 |x12 |y1 |
+                                | :  | :  | : |
+                                |xn1 |xn2 |yn |
 
 ## My decision tree follows the following guidelines:
 - Candidate splits (j; c) for numeric features should use a threshold c in feature dimension j in the form of xj >= c.
