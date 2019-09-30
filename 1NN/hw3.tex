@@ -157,7 +157,7 @@ We will specify $A$ in the questions below. (Hint: $d$ is dimension while $d_A$ 
 
 \item (5 pts) What is the mathematical condition on the diagonal elements for a diagonal matrix $A$ to be PSD?
 \begin{soln}  
-For every real vector $x$, when ${x^{T}}Ax =  \sum_{i=1}^n {{x_{i}^{2}}A_{i} } >= 0$, A is PSD. So every element $A_{i}$ in A need to be non-negative to make A a PSD matrix. 
+For every real vector $x$, when ${x^{T}}Ax =  \sum_{i=1}^n {{x_{i}^{2}}A_{i} } >= 0$, A is PSD. So every element $a_{ii}$ in A need to be non-negative to make A a PSD matrix. 
 \end{soln}
 
 \item (5 pts) Given a training data set $D$, how do we preprocess it to make each feature dimension mean 0 and variance 1? (Hint: give the formula for $\hat \mu_j, \hat \sigma_j$ for each dimension $j$, and explain how to use them to normalize the data.  You may use either the $1 \over n$ or $1 \over n-1$ version of sample variance.  You may assume the sample variances are non-zero.) 
@@ -198,8 +198,9 @@ So, $D_{I}(\tilde \x, \tilde \x') = D_{A}(\x, \x')$
 
 
 \item (5 pts) Geometrically, what does $L\x$ do to the point $\x$?  Explain in simple English.
-\begin{soln}  
 
+\begin{soln}  
+$L\x $ changes every feature dimension's magnitude. In other words, by applying $L\x$, we can enlarge or condense the value space for every feature by using different $a_{ii}$. To my uderstanding, $L\x$ can be considered as weight vector.
 \end{soln}
 
 
@@ -214,6 +215,7 @@ $D_{I}(\tilde \x, \tilde \x') = \sqrt{(\tilde \x - \tilde \x')^{T}I(\tilde \x - 
 Since $U$ is orthognal matrix, $U^{T}U = I$ and $L^{T}IL = A$.\\ So $D_{I}(\tilde \x, \tilde \x') =  \sqrt{(\x -  \x')^{T}A(\x -  \x')} = D_{A}(\x, \x') $
 
 (ii).\\
+Still,$ L\x$  changes feature's magnitude. By applying orthognal matrix on the left side, we can rotate feature values to a new coordinates without changing the relative Euclidean distance between every corrdinates.
 \end{soln}
 
 
@@ -283,16 +285,16 @@ Let us know what else you needed to set.  Compare Weka's results to your Q9 and 
 
 \begin{soln}
 D2a: 0.085\\
-D2a\_norm(Weka normalized version): 0.085\\
-D2a\_norm(my own normalized version): 0.085 \\
+D2a\_norm(Weka normalized version): 0.055\\
+D2a\_norm(my own normalized version): 0.055 \\
 D2b: 0.05\\
-D2b\_norm(Weka normalized version): 0.05\\
-D2b\_norm(My own normalized version): 0.05
+D2b\_norm(Weka normalized version): 0.00\\
+D2b\_norm(My own normalized version): 0.00
 
 "Weka normalized version"  means applying the "Normalize" fliter in preprcoessing module inside Weka on the orginal D2a and D2b datasets.
-I notice that passing normalized version and unnormalized version give same resutls for both datasets D2a and D2b. And these results are all different from what I got by using my 1NN model. 
-
-My guess about this result is that Weka applies auto-normalization to datasets for which the mean is not 0 and variance is not 1.
+I notice that passing normalized version and unnormalized version give same resutls for both datasets D2a and D2b.
+Weka's D2a results are different from what I got by using my 1NN model but it's close to my normalized D2a result,  and its D2b results is same as my normalized D2b result.
+So based on this, my guess about this result is that Weka applies auto-normalization to datasets for which the mean is not 0 and variance is not 1.
 \end{soln}
 
 \end{enumerate}
