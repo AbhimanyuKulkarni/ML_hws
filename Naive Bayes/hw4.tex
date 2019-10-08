@@ -145,16 +145,14 @@ using the following two prediction strategies respectively?  Prove your answer.
 Strategy 1: $\hat x \in \argmax_x \theta_x$, the outcome with the highest probability.
 
 \begin{soln}
-Define n is the number of values whose $\theta$ = $\max\theta$\\
-So $\hat x$ could be a single value whose $\theta$ is $ \max\theta $ or a list of values with same $\theta$.\\
- For the latter case, $\hat x \in$ uniform distribution with probability of $\frac{1}{n}$.\\
-$\E \ind[\hat x \neq x] = P(\hat x \neq x)\times1 = P(\max\theta \neq \theta_x) = 1 - P(\max\theta = \theta_x)\times \frac{1}{n} = 1 - \max\theta \times \frac{1}{n}$
+Define $\max\theta$ is the maximum of $ \theta_k$ where $k \in \{1,2,...k\}$\\
+$\E \ind[\hat x \neq x] = P(\hat x \neq x)\times1 = P(\max\theta \neq \theta_x) = 1 - P(\max\theta = \theta_x) = 1 - \max\theta$
 \end{soln}
 
 Strategy 2: You mimic the world by generating a prediction $\hat x \sim \mbox{multinomial}(\theta)$.  (Hint: your randomness and the world's randomness are independent)
 
 \begin{soln}
-$\E \ind[\hat x \neq x] = P(\hat x \neq x)\times1 = P(\theta_{\hat x} \neq \theta_x) = 1 - \theta_{x}$
+$\E \ind[\hat x \neq x] = P(\hat x \neq x)\times1 = P(\theta_{\hat x} \neq \theta_x) = \sum_{i=1}^k{P(x = i, \hat x \neq i)} = \sum_{i=1}^k{\theta_i \times (1 - \theta_i)}$
 \end{soln}
 
 \section{Best Prediction Under Different Misclassification Losses (12 pts)}
@@ -168,7 +166,7 @@ $$\E c_{x \hat x}.$$
 Derive your optimal prediction $\hat x$.
 
 \begin{soln}
-$\E c_{x \hat x} = \sum_{i=1}^k{\sum_{j=1}^k {c_{ij} \times P(x = i, \hat  x = j) }}$
+$ \hat x = \argmin_j \sum_{j=1}^k\sum_{i=1}^k{ c_{ij}\times P(x = i,\hat x = j) }$
 \end{soln}
 
 \section{Language Identification with Naive Bayes (8 pts each)}
@@ -251,11 +249,12 @@ Show the three values: $\hat p(y=e \mid x), \hat p(y=j \mid x), \hat p(y=s \mid 
 Show the predicted class label of $x$.
 
 \begin{soln}
-$\hat p(y=e \mid x) = \frac{e^ {-7841.786386770362}}{3}$\\
-$\hat p(y=j \mid x) = \frac{e^{-8452.383194656028}}{3}$\\
-$\hat p(y=s \mid x) = \frac{e^{-8759.518886307718}}{3}$\\
+$P(x) = \hat p(x \mid y=e) \times \hat p(y=e)+\hat p(x \mid y=s) \times \hat p(y=s)+\hat p(x \mid y=j) \times \hat p(y=j) \\=   \frac{1}{3} \times (e^ {-7841.786386770362} +  e^{-8452.383194656028} +  e^{-8759.518886307718})$\\\\
+$\hat p(y=e \mid x) = \frac{e^ {-7841.786386770362}}{3 \times P(x) }$\\
+$\hat p(y=j \mid x) = \frac{e^{-8452.383194656028}}{3 \times P(x)}$\\
+$\hat p(y=s \mid x) = \frac{e^{-8759.518886307718}}{3 \times P(x)}$\\
 
-$\hat p(y=e \mid x) > \hat p(y=j \mid x) > \hat p(y=s \mid x)$
+$\hat p(y=e \mid x) > \hat p(y=j \mid x) > \hat p(y=s \mid x)$\\
 So the predicted class label of x should be 'e', which means x is an English file.
 \end{soln}
 
@@ -276,7 +275,7 @@ Japanese& 0& 0 & 10
 \item Take a test document.   Arbitrarily shuffle the order of its characters so that the words (and spaces) are scrambled beyond human recognition.  How does this shuffling affect your Naive Bayes classifier's prediction on this document?  Explain the key mathematical step in the Naive Bayes model that justifies your answer.
 
 \begin{soln}
-Applying shuffle had no effect on the prediction. This is consistent with the mathmatical steps inside naive bayes algorithm.  Shuffle only changes every character's positional representation but naive bayes only takes the count of every character and has no positional representation of characters. So shuffle won't change anything of naive bayes's prediction.
+Applying shuffle had no effect on the prediction. This is consistent with the mathmatical steps inside naive bayes algorithm.  Shuffle only changes every character's positional representation but naive bayes only takes the count of every character and has no positional representation of characters. So shuffle won't change anything of naive bayes's prediction.\\
 \end{soln}
 
 \end{enumerate}
@@ -292,8 +291,19 @@ Then, create 3 subdirectories e, j, s and place each of the 20 documents in that
 The tri-color histogram for different features is interesting.
 \item From the Classify tab, choose Classifier / bayes / NaiveBayesMultinomial
 \item Let Weka perform 10-fold cross validation.  Report the resulting confusion matrix.
+
+\begin{soln}
+Weka gives perfect predictions of these files. (i.e. 100\% accuracy)\\
+The results in detail are shown below:
+	   \begin{figure}[H]
+	        \centering
+	        \includegraphics[width=1.0\textwidth]{result.pdf}
+	        \captionsetup{labelformat=empty}
+	        \caption{}
+	        \label{fig:my_label}
+	   \end{figure}
+\end{soln}
+
 \end{itemize}
-
-
 \bibliographystyle{apalike}
 \end{document}
