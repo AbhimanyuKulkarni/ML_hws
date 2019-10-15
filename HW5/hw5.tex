@@ -199,7 +199,7 @@ X =
    ...& ... & ... \\
    1 & year_{n} & days_{n} 
  \end{bmatrix} $$ 
-and $year_i$ and $days_i$ are $i^{th}$ year in the record and the corresponding ice days in that year\\
+and $year_i$ and $days_i$ are $i^{th}$ year in the record and the corresponding Monona ice days in that year\\
 $Y$ is the $n\times 1$ matrix recording ice days for every year\\
 The result of $\beta$ is $[-64.182766, 0.041225, 0.852951]$
 
@@ -236,15 +236,15 @@ Try other $\eta$ values and tell us what happens.
 
 \begin{soln}
 epoch 0:  11767.655172413793\\
-epoch 1:  531965809133.0478\\
-epoch 2:  2.4762221786726425e+19\\
-epoch 3:  1.1526442149675323e+27\\
-epoch 4:  5.365385617826294e+34\\
-epoch 5:  2.497506381775212e+42\\
-epoch 6:  1.1625516917710306e+50\\
-epoch 7:  5.411503433592946e+57\\
-epoch 8:  2.5189735320221707e+65\\
-epoch 9:  1.1725443276334322e+73\\
+epoch 1:  6180350808297761.0\\
+epoch 2:  3.330626781514358e+27\\
+epoch 3:  1.7948940285065868e+39\\
+epoch 4:  9.672787691041719e+50\\
+epoch 5:  5.212721209720432e+62\\
+epoch 6:  2.8091655971560845e+74\\
+epoch 7:  1.5138755814390704e+86\\
+epoch 8:  8.158363032772628e+97\\
+epoch 9:  4.396589005764993e+109\\
 
 This shows that setting learning rate to be 0.1 doesn't make it converge and those loss are much larger than the loss gotten from using closed-form method.
 Obviously, this is because the learning rate (step size) is too big. After I tried different step sizes, I found that when $\eta = 1e-7$, the loss decreased in a much faster rate and converged. What's interesting is that when $\eta = 1e-8$, the decreasing rate became slower than 1e-7. So we should be careful about choosing learning rate or step size.
@@ -256,6 +256,19 @@ Obviously, this is because the learning rate (step size) is too big. After I tri
 As preprocessing, normalize your year and Monona features (but not $y_{Mendota}$).
 Then repeat Q6.
 
+\begin{soln}
+epoch 0:  11767.655172413793\\
+epoch 1:  7545.998373501812\\
+epoch 2:  4850.273518530398\\
+epoch 3:  3127.473895121937\\
+epoch 4:  2025.60791967957\\
+epoch 5:  1320.3620154290256\\
+epoch 6:  868.6443341670556\\
+epoch 7:  579.0974806545669\\
+epoch 8:  393.3511885316234\\
+epoch 9:  274.0870881867737\\
+\end{soln}
+
 \item 
 ``Reset'' to Q3 (no normalization,  use closed-form solution), but train a linear regression model without using Monona:
 $$\hat y_{Mendota} = \gamma_0 + \gamma_1 x.$$
@@ -263,6 +276,15 @@ $$\hat y_{Mendota} = \gamma_0 + \gamma_1 x.$$
   \item Interpret the sign of $\gamma_1$.
   \item Some analysts claim that because $\beta_1$ the closed-form solution in Q3 is positive, fixing all other factors, as the years go by the number of Mendota ice days will increase, namely the model in Q3 indicates a cooling trend. Discuss this viewpoint, relate it to question 8(a).
   \end{enumerate}
+
+\begin{soln}
+(a).\\
+ $\gamma_0 = 406.111060, \gamma_1 =  -0.156299$\\
+ The sign of $\gamma_1$ is negative, which means with the increase of year, the icy days decreases. Contrary to Q3, this indicates a warming trend.
+
+(b).\\
+I think this viewpoint is untenable. In Q3, we have another feature, namely the ice days of Monona. Though $\beta_1$, which is the parameter for year feature in Q3, is positve, we can notice that $\beta_2$, which is the parameter for ice days of Monona, is also postive and is relatively much larger than $\beta_1$. From the plot in Q1 we can notice that Monona ice days has a decreasing trend. So, model from Q3 actually also predicted a warming trend since it learned a larger parameter for decreasing feature and relatively smaller parameter for increasing feature. This result is consistent with (a).
+\end{soln}
 
 \item
 Of course, Weka has linear regression.  Reset to Q3.  Save the training data in .arff format for Weka.  Use classifiers / functions / LinearRegression.  Choose ``Use training set.''  

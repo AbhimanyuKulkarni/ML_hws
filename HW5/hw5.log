@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  13 OCT 2019 23:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  15 OCT 2019 00:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -836,29 +836,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 237--248
 
  []
 
-[2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 295.
- [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
+[2] [3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 317.
+ [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 317.
  (./hw5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 295.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 317.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 317.
 Package rerunfilecheck Info: File `hw5.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 317.
  ) 
 Here is how much of TeX's memory you used:
- 10251 strings out of 492616
- 150322 string characters out of 6129482
- 262278 words of memory out of 5000000
+ 10252 strings out of 492616
+ 150328 string characters out of 6129482
+ 262413 words of memory out of 5000000
  13964 multiletter control sequences out of 15000+600000
  20222 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,11n,43p,362b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,12n,43p,614b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local
@@ -874,10 +870,10 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf
 -dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb>
-Output written on hw5.pdf (3 pages, 160927 bytes).
+Output written on hw5.pdf (4 pages, 162338 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 21 named destinations out of 1000 (max. 500000)
+ 162 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
+ 22 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
