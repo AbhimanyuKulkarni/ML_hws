@@ -290,10 +290,18 @@ I think this viewpoint is untenable. In Q3, we have another feature, namely the 
 Of course, Weka has linear regression.  Reset to Q3.  Save the training data in .arff format for Weka.  Use classifiers / functions / LinearRegression.  Choose ``Use training set.''  
   Bring up Linear Regression options, set ``ridge'' to 0 so it does not regularize.  Run it and tell us the model: it is in the output in the form of ``$\beta_1$ * year + $\beta_2$ * Monona + $\beta_0$.'' 
 
+\begin{soln}
+$days = 0.0412 * years + 0.853  * monona -64.1828$
+\end{soln}
+
 \item Ridge regression.
 \begin{enumerate}
 \item
 Then set ridge to 1 and tell us the resulting Weka model.
+
+\begin{soln}
+$days = 0.0387 * years + 0.8436 * monona -58.3961$
+\end{soln}
 \item
 Meanwhile, derive the closed-form solution in matrix form for the ridge regression problem:
 $$\min_\beta \left({1\over n} \sum_{i=1}^n (x_i^\top \beta - y_i)^2 \right) + \lambda \|\beta\|_A^2$$
@@ -308,6 +316,13 @@ $$A=
 \end{bmatrix}.$$
 This $A$ matrix has the effect of NOT regularizing the bias $\beta_0$, which is standard practice in ridge regression.
 Note: Derive the closed-form solution, do not blindly copy lecture notes.
+
+\begin{soln}
+$Loss = (X^T\beta - Y)^T(X^T\beta - Y) + \lambda (\beta^T A \beta) $\\%=  (X^T\beta - Y)^T(X^T\beta - Y) + \lambda (\beta_1^2+\beta_2^2) $\\
+
+$\frac{\partial Loss}{\partial \beta} = 2X^T(X^T\beta - Y) +2 \lambda (A\beta) = 0$\\
+$ 2X^T(X\beta - Y) +2 \lambda (A\beta) = 0$
+\end{soln}
 \item
 Let $\lambda=1$ and tell us the value of $\beta$ from your ridge regression model.
 \end{enumerate}
