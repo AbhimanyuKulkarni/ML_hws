@@ -189,7 +189,7 @@ $$\min_\beta {1\over n} \sum_{i=1}^n (x_i^\top \beta - y_i)^2.$$
 Give the MLE formula in matrix form (define your matrices), then give the MLE value of $\beta_0, \beta_1, \beta_2$. 
 
 \begin{soln}
-Formula: $\beta = [\beta_0, \beta_1, \beta_2] = (X^TX)^{-1}X^TY$\\
+Formula: $\beta_{MLE} =  (X^TX)^{-1}X^TY$\\
 where 
 
 $$  
@@ -223,9 +223,7 @@ $${1\over n} \sum_{i=1}^n (x_i^\top \beta - y_i)^2.$$
 Derive the gradient.
 
 \begin{soln}
-$\nabla(\beta) = \frac{\partial ({1\over n} \sum_{i=1}^n (x_i^\top \beta - y_i)^2)}{\partial \beta} =$\\ $ [-{2\over n} \sum_{i=1}^n (x_i^\top \beta - y_i)\times x_{i0}, -{2\over n} \sum_{i=1}^n (x_i^\top \beta - y_i)\times x_{i1}, -{2\over n} \sum_{i=1}^n (x_i^\top \beta - y_i)\times x_{i2}]$\\
-
-$\beta = [\beta_0, \beta_1, \beta_2]$
+$\nabla(\beta) \\= \frac{\partial ({1\over n} \sum_{i=1}^n (x_i^\top \beta - y_i)^2)}{\partial \beta} \\= \frac{\partial (\frac{(X\beta - Y)^T(X\beta - Y)}{n})}{\partial \beta}\\= 2X^T(X\beta - Y)$
 \end{soln}
 
 \item
@@ -318,13 +316,18 @@ This $A$ matrix has the effect of NOT regularizing the bias $\beta_0$, which is 
 Note: Derive the closed-form solution, do not blindly copy lecture notes.
 
 \begin{soln}
-$Loss = (X^T\beta - Y)^T(X^T\beta - Y) + \lambda (\beta^T A \beta) $\\%=  (X^T\beta - Y)^T(X^T\beta - Y) + \lambda (\beta_1^2+\beta_2^2) $\\
-
-$\frac{\partial Loss}{\partial \beta} = 2X^T(X^T\beta - Y) +2 \lambda (A\beta) = 0$\\
-$ 2X^T(X\beta - Y) +2 \lambda (A\beta) = 0$
+$Loss = \frac{1}{n} \times(X\beta - Y)^T(X\beta - Y) + \lambda (\beta^T A \beta) $\\
+$\frac{\partial Loss}{\partial \beta} = 2X^T(X\beta - Y)+2 \lambda A\beta = 0$\\
+$(X^TX\beta +\lambda A \beta) - X^TY = 0$\\\\
+$ \beta = (X^TX +\lambda A)^{-1}X^TY$
 \end{soln}
 \item
 Let $\lambda=1$ and tell us the value of $\beta$ from your ridge regression model.
+
+\begin{soln}
+$\beta = [-64.214868, 0.041238, 0.853007]$
+\end{soln}
+
 \end{enumerate}
 
 \end{enumerate}
