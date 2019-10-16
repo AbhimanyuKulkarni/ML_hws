@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  15 OCT 2019 19:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  16 OCT 2019 16:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -869,7 +869,7 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2019/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf
 -dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb>
-Output written on hw5.pdf (4 pages, 166850 bytes).
+Output written on hw5.pdf (4 pages, 165910 bytes).
 PDF statistics:
  162 PDF objects out of 1000 (max. 8388607)
  96 compressed objects within 1 object stream
