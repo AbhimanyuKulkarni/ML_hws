@@ -159,7 +159,7 @@ With this random network $f_w$, visualize $y=f_w(x)$ for $x=(x_1,x_2)$ on the 2D
 You can do this with a 3D surface plot, a 2D contour plot, or whatever is visually clear and convenient for your programming language.
 If you are not familiar with visualization in your language, ask on Piazza.
 For example, in Matlab with meshgrid(-5:0.1:5, -5:0.1:5) and surf(X,Y,F) my random network looks like
-\fbox{\includegraphics[width=4in]{1x10ReLu1Sigmoid.pdf}}
+% \fbox{\includegraphics[width=4in]{1x10ReLu1Sigmoid.pdf}}
 We ask you to generate as many random networks as you like, but visualize the first three networks (so they are an unbiased sample), then visualize three more networks that you find interesting among the ones you generate.
 That is a total of six plots.
 
@@ -169,7 +169,7 @@ Show the value of $o_1, \ldots, o_{10}, y$ for three input points, respectively:
 
 \item Repeat question 2 but with the 5-hidden-layer network.
 For example, one of my random network is visualized as
-\fbox{\includegraphics[width=4in]{5x2ReLu1Sigmoid.pdf}}
+% \fbox{\includegraphics[width=4in]{5x2ReLu1Sigmoid.pdf}}
 Produce those six plots.
 
 
@@ -267,17 +267,17 @@ Recall $f_C'(u_C) = \sigma'(u_C) = \sigma(u_C)(1-\sigma(u_C)) = v_C (1-v_C)$.
 Print $E$, $\frac{\partial E}{\partial v_C}$, and $\frac{\partial E}{\partial u_C}$. 
 For example,
 \begin{verbatim}
-(weights) 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 (input) -1 1
+(weights) 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 (input) 1 -1 (y) 1
 0.03778 -0.27488 -0.05479
 
-(weights) 1 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 -0.2 (input) 1.7 0
+(weights) 1 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 (input) -0.2 1.7 (y) 0
 0.31402 0.79249 0.13032
 
-(weights) 4 3 2 1 0 -1 -2 -3 -4 -4 (input) 1 0
+(weights) 4 3 2 1 0 -1 -2 -3 -4 (input) -4 1 (y) 0
 0.00710 0.11920 0.01252
 \end{verbatim}
 
-Now compute $E$, $\frac{\partial E}{\partial v_C}$, and $\frac{\partial E}{\partial u_C}$ for weights 0.1 -0.2 0.3 -0.4 0.5 -0.6 0.7 -0.8 0.9 and input 1 -1.
+Now compute $E$, $\frac{\partial E}{\partial v_C}$, and $\frac{\partial E}{\partial u_C}$ for weights 0.1 -0.2 0.3 -0.4 0.5 -0.6 0.7 -0.8 0.9, input 1 -1, and label $y=1$.
 
 \item 
 The partial derivative with respect to hidden layer variable $v_j$ is
@@ -296,16 +296,16 @@ Note we define the derivative to be 1 when $u_j=0$ (look up subderivative to lea
 Print $\frac{\partial E}{\partial v_A}$, $\frac{\partial E}{\partial u_A}$, $\frac{\partial E}{\partial v_B}$, and $\frac{\partial E}{\partial u_B}$.
 For example
 \begin{verbatim}
-(weights) 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 (input) -1 1
+(weights) 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 (input) 1 -1 (y) 1
 -0.04383 -0.04383 -0.04931 -0.04931
 
-(weights) 1 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 -0.2 (input) 1.7 0
+(weights) 1 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 (input) -0.2 1.7 (y) 0
 0.03910 0.03910 0.02606 0.02606
 
-(weights) 4 3 2 1 0 -1 -2 -3 -4 -4 (input) 1 0
+(weights) 4 3 2 1 0 -1 -2 -3 -4 (input) -4 1 (y) 0
 -0.03755 0.00000 -0.05006 -0.05006
 \end{verbatim}
-Now print $\frac{\partial E}{\partial v_A}$, $\frac{\partial E}{\partial u_A}$, $\frac{\partial E}{\partial v_B}$, and $\frac{\partial E}{\partial u_B}$ for weights 0.1 -0.2 0.3 -0.4 0.5 -0.6 0.7 -0.8 0.9 and input 1 -1.
+Now print $\frac{\partial E}{\partial v_A}$, $\frac{\partial E}{\partial u_A}$, $\frac{\partial E}{\partial v_B}$, and $\frac{\partial E}{\partial u_B}$ for weights 0.1 -0.2 0.3 -0.4 0.5 -0.6 0.7 -0.8 0.9, input 1 -1, and label $y=1$.
 
 \item
 Now we can compute the partial derivative with respect to the edge weights:
@@ -313,17 +313,17 @@ $$\frac{\partial E}{\partial w_{ij}} = v_i \frac{\partial E}{\partial u_j}.$$
 Print $\frac{\partial E}{\partial w_1}, \ldots \frac{\partial E}{\partial w_9}$. 
 For example,
 \begin{verbatim}
-(weights) 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 (input) -1 1
+(weights) 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 (input) 1 -1 (y) 1
 -0.04383 -0.04383 0.04383 -0.04931 -0.04931 0.04931 -0.05479 0.00000 -0.01644
 
-(weights) 1 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 -0.2 (input) 1.7 0
+(weights) 1 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 (input) -0.2 1.7 (y) 0
 0.03910 -0.00782 0.06647 0.02606 -0.00521 0.04431 0.13032 0.28411 0.18636
 
-(weights) 4 3 2 1 0 -1 -2 -3 -4 -4 (input) 1 0
+(weights) 4 3 2 1 0 -1 -2 -3 -4 (input) -4 1 (y) 0
 0.00000 0.00000 0.00000 -0.05006 0.20025 -0.05006 0.01252 0.00000 0.00000
 \end{verbatim}
 Now print $\frac{\partial E}{\partial w_1}, \ldots \frac{\partial E}{\partial w_9}$
-for weights 0.1 -0.2 0.3 -0.4 0.5 -0.6 0.7 -0.8 0.9 and input 1 -1.
+for weights 0.1 -0.2 0.3 -0.4 0.5 -0.6 0.7 -0.8 0.9, input 1 -1, and label $y=1$.
 
 \item
 Now we perform one step of stochastic gradient descent.  With step size $\eta$, we update the weights:
