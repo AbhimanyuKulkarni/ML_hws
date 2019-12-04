@@ -229,8 +229,9 @@ We should choose E(Z,Y) and E(X,Y) according to greedy algotirhm
 \end{soln}
 \item Root your tree at node $X$, assign directions to the selected edges.
 \begin{soln}
-
+\begin{center}
 \includegraphics[width=0.3\textwidth]{q25.png}
+\end{center}
 \end{soln}
 
 \end{enumerate}
@@ -251,7 +252,8 @@ Hint: An $m\times m$ matrix $K$ is positive semi-definite if $\forall v \in \R^m
 \begin{soln}
 
 $K$ is an identity matrix, i.e.$ K = I_{m}$\\
-So, $v^\forall v \in \R^m, \top K v = v^\top I_{m} v =  v^\top v \ge 0$
+So, $\forall v \in \R^m, v^\top K v = v^\top I_{m} v =  v^\top v \ge 0$\\
+So, kernel matrix $K=[K_{ij}]$ is positive semi-definite
 \end{soln}
 
 \item Given a training set $(z_1, y_1), \ldots, (z_n, y_n)$ with binary labels, the dual SVM problem with the above kernel $k$ will have parameters $\alpha_1, \ldots, \alpha_n, b \in \R$.  The predictor for input $z$ takes the form
@@ -260,7 +262,8 @@ Recall the label prediction is $\sgn(f(z))$.
 Prove that there exists $\alpha_1, \ldots, \alpha_n, b$ such that $f$ correctly separates the training set.
 In other words, $k$ induces a feature space rich enough such that in it any training set can be linearly separated.
 \begin{soln}
-
+\\When a same $z$ can have different $y$ values, the bayes error will beb greater than zero, which means it is by no means we can have a set of parameters to linearly separate the training set. So, for this question, I assume all $z$ values are distinct or same "z" values will have same $y$ value.
+\\\\
 For every $z_{j}$ in training set, $ \sum_{i=1}^n \alpha_i y_i k(z_i, z) =  \alpha_j y_j k(z_j, z_j) = \alpha_j y_j$ since all other $k(z_i, z_j)$ are zeros.\\
 So, $f(z_{j}) = \alpha_j y_j + b$\\
 When we set all $\alpha$ to be 1 and set b to be 0, $f(z_{j}) = y_j$, which means we can linearly separate all training set points.\\
@@ -285,8 +288,8 @@ Download three.txt and eight.txt.  Each has 200 handwritten digits.  Each line i
 Visualize the two gray scale images corresponding to the first line in three.txt and the first line in eight.txt.
 
 \begin{soln}
-\includegraphics[width=0.4\textwidth]{three.png}
-\includegraphics[width=0.4\textwidth]{eight.png}
+\includegraphics[width=0.5\textwidth]{three.png}
+\includegraphics[width=0.5\textwidth]{eight.png}
 \end{soln}
 
 \item (5 pts) Putting the two data files together (threes first, eights next) to form a $n \times D$ matrix $X$ where $n=400$ digits and $D=256$ pixels.  Note we use $n\times D$ size for $X$ instead of $D\times n$ to be consistent with the convention in linear regression.   The $i$th row of $X$ is $x_i^\top$, where $x_i \in \R^D$ is the $i$th image in the combined data set.
@@ -294,22 +297,25 @@ Compute the sample mean $y = {1\over n} \sum_{i=1}^n x_i$.
 Visualize $y$ as a 16x16 gray scale image.
 
 \begin{soln}
-\includegraphics[width=0.4\textwidth]{q42.png}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{q42.png}
+\end{center}
 \end{soln}
 
 \item (10 pts) Center $X$ using $y$ above.  Then form the sample covariance matrix $S={X^\top X \over n-1}$.
 Show the 5x5 submatrix $S(1\ldots 5, 1 \ldots 5)$.
-
 \begin{soln}
+\begin{center}
 $
-\begin{bmatrix}
- 87.46948912 &227.6370481   &57.48734107   &6.66785003 &  -1.99574334\\
- 227.6370481 &  1288.66263787 & 448.44448912&   72.46379442 &   -8.71870787\\
- 57.48734107 & 448.44448912 & 866.12206744 &305.86639285 & 13.6765041 \\
-  6.66785003 &  72.46379442 &305.86639285& 526.20107613 & 228.00078699\\
- -1.99574334 &  -8.71870787  &13.6765041&  228.00078699 & 363.18351811
-\end{bmatrix}
+\begin{bmatrix}	
+59.17  & 142.15  & 28.68  & -7.18  & -14.34  & \\
+142.15  & 878.94  & 374.14  & 24.13  & -87.13  & \\
+28.68  & 374.14  & 1082.91  & 555.23  & 33.72  & \\
+-7.18  & 24.13  & 555.23  & 1181.24  & 777.77  & \\
+-14.34  & -87.13  & 33.72  & 777.77  & 1429.96  & \\
+	\end{bmatrix}
 $
+\end{center}
 \end{soln}
 
 \item (10 pts) Use appropriate software to compute the two largest eigenvalues $\lambda_1 \ge \lambda_2$ and the corresponding eigenvectors $v_1, v_2$ of $S$.
@@ -318,13 +324,30 @@ Show the value of $\lambda_1, \lambda_2$.
 Visualize $v_1, v_2$ as two 16x16 gray scale images.
 Hint: their elements will not be in [0, 255], but you can shift and scale them appropriately.  It is best if you can show an accompany ``colorbar'' that maps gray scale to values. 
 
+\begin{soln}
+
+ $\lambda_1 =237155.2463\\
+ \lambda_2 = 145188.3527$\\
+\includegraphics[width=0.4\textwidth]{eigenv1.png}
+\includegraphics[width=0.4\textwidth]{eigenv2.png}
+\end{soln}
 \item (5 pts) Now we project (the centered) $X$ down to the two PCA directions.   Let $V=[v_1 v_2]$ be the $D\times 2$ matrix.  The projection is simply $XV$.
 Show the resulting two coordinates for the first line in three.txt and the first line in eight.txt, respectively.
+
+\begin{soln}
+first line in three: ( -109.36 , 77.52 )\\
+first line in eight: ( 94.08 , 126.88 )
+\end{soln}
 
 \item (5 pts) Now plot the 2D point cloud of the 400 digits after projection.
 For visual interest, color points in three.txt red and points in eight.txt blue.
 But keep in mind that PCA is an unsupervised learning method and it does not know such class labels.
 
+\begin{soln}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{q46.png}
+\end{center}
+\end{soln}
 \end{enumerate}
 
 \end{document}
