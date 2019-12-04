@@ -127,8 +127,8 @@
 %%% NOTE:  Replace 'NAME HERE' etc., and delete any "\red{}" wrappers (so it won't show up as red)
 
 \author{
-\red{$>>$NAME HERE$<<$} \\
-\red{$>>$ID HERE$<<$}\\
+$>>$Sean Sun$<<$ \\
+$>>$9078202463$<<$\\
 } 
 
 \date{}
@@ -159,6 +159,23 @@ Consider the directed graphical model (aka Bayesian network) in Figure~\ref{fig:
 Compute $P(B=t \mid E=f,J=t,M=t)$ and $P(B=t \mid E=t,J=t,M=t)$.
 These are the conditional probabilities of a burglar in your house (yikes!) when both of your neighbors John and Mary call you and say they hear an alarm in your house, but without or with an earthquake also going on in that area (what a busy day), respectively.
 
+\begin{soln}
+
+$P(B=t \mid E=f,J=t,M=t)\\
+ = \frac{P(B=t, E=f,J=t,M=t)}{P(E=f,J=t,M=t) }
+ = 
+\frac{\sum_A {P(B=t)P(E=f)P(M=t \mid A)P(J=t \mid A)P(A \mid B=t, E=f)}}
+{\sum_A {\sum_B P(B)P(E=f)P(M=t \mid A)P(J=t \mid A)P(A \mid B, E=f)}}
+= \frac{0.04064}{0.05832} 
+\\= 0.4106 $\\\\
+$P(B=t \mid E=t,J=t,M=t) 
+\\= \frac{P(B=t, E=t,J=t,M=t)}{P(E=t,J=t,M=t)}
+ = 
+\frac{\sum_A {P(B=t)P(E=t)P(M=t \mid A)P(J=t \mid A)P(A \mid B=t, E=t)}}
+{\sum_A {\sum_B P(B)P(E=t)P(M=t \mid A)P(J=t \mid A)P(A \mid B, E=t)}}= \frac{0.01138}{0.03654}
+\\=0.2375
+ $
+\end{soln}
 
 \section{Chow-Liu Algorithm [20 pts]}
 Suppose we wish to construct a directed graphical model for 3 features $X$, $Y$, and $Z$ using the Chow-Liu algorithm. We are given data from 100 independent experiments where each feature is binary and takes value $T$ or $F$. Below is a table summarizing the observations of the experiment:
@@ -189,10 +206,33 @@ Suppose we wish to construct a directed graphical model for 3 features $X$, $Y$,
 
 \begin{enumerate}
 \item Compute the mutual information $I(X, Y)$ based on the frequencies observed in the data.
+
+\begin{soln}
+
+$I(X, Y) = \sum_{(x,y)}\hat{P}(X=x,Y=y)log\frac{\hat{P}(X=x,Y=y)}{\hat{P}(X=x)\hat{P}(Y=y)} = 0.2781$
+\end{soln}
+
 \item Compute the mutual information $I(X, Z)$ based on the frequencies observed in the data.
+\begin{soln}
+
+$I(X, Z) = \sum_{(x,z)}\hat{P}(X=x,Z=z)log\frac{\hat{P}(X=x,Z=z)}{\hat{P}(X=x)\hat{P}(Z=z)} = 0.1328$
+\end{soln}
 \item Compute the mutual information $I(Z, Y)$ based on the frequencies observed in the data.
+\begin{soln}
+
+$I(Z, Y) = \sum_{(z,y)}\hat{P}(Z=z,Y=y)log\frac{\hat{P}(Z=z,Y=y)}{\hat{P}(Z=z)\hat{P}(Y=y)} = 0.3973$
+\end{soln}
 \item Which undirected edges will be selected by the Chow-Liu algorithm as the maximum spanning tree?
+\begin{soln}
+
+We should choose E(Z,Y) and E(X,Y) according to greedy algotirhm
+\end{soln}
 \item Root your tree at node $X$, assign directions to the selected edges.
+\begin{soln}
+
+\includegraphics[width=0.3\textwidth]{q25.png}
+\end{soln}
+
 \end{enumerate}
 
 
@@ -208,14 +248,31 @@ k(z,z') =
 \begin{enumerate}
 \item Prove that for any integer $m>0$, any $z_1, \ldots, z_m \in Z$, the $m \times m$ kernel matrix $K=[K_{ij}]$ is positive semi-definite, where $K_{ij}=k(z_i, z_j)$ for $i,j=1\ldots m$.
 Hint: An $m\times m$ matrix $K$ is positive semi-definite if $\forall v \in \R^m, v^\top K v \ge 0$.
+\begin{soln}
+
+$K$ is an identity matrix, i.e.$ K = I_{m}$\\
+So, $v^\forall v \in \R^m, \top K v = v^\top I_{m} v =  v^\top v \ge 0$
+\end{soln}
 
 \item Given a training set $(z_1, y_1), \ldots, (z_n, y_n)$ with binary labels, the dual SVM problem with the above kernel $k$ will have parameters $\alpha_1, \ldots, \alpha_n, b \in \R$.  The predictor for input $z$ takes the form
 $$f(z) = \sum_{i=1}^n \alpha_i y_i k(z_i, z) + b.$$
 Recall the label prediction is $\sgn(f(z))$.
 Prove that there exists $\alpha_1, \ldots, \alpha_n, b$ such that $f$ correctly separates the training set.
 In other words, $k$ induces a feature space rich enough such that in it any training set can be linearly separated.
+\begin{soln}
+
+For every $z_{j}$ in training set, $ \sum_{i=1}^n \alpha_i y_i k(z_i, z) =  \alpha_j y_j k(z_j, z_j) = \alpha_j y_j$ since all other $k(z_i, z_j)$ are zeros.\\
+So, $f(z_{j}) = \alpha_j y_j + b$\\
+When we set all $\alpha$ to be 1 and set b to be 0, $f(z_{j}) = y_j$, which means we can linearly separate all training set points.\\
+So, there exists $\alpha_1, \ldots, \alpha_n, b$ such that $f$ correctly separates the training set.
+\end{soln}
+
 
 \item How does that $f$ predict input $z$ that is not in the training set?
+
+\begin{soln}
+All $z$ that is not in training set will be labeled as 0
+\end{soln}
 
 \end{enumerate}
 
@@ -227,12 +284,33 @@ Download three.txt and eight.txt.  Each has 200 handwritten digits.  Each line i
 \item (5 pts) Each line has 256 numbers: they are pixel values (0=black, 255=white) vectorized from the image as the first column (top down), the second column, and so on.
 Visualize the two gray scale images corresponding to the first line in three.txt and the first line in eight.txt.
 
+\begin{soln}
+\includegraphics[width=0.4\textwidth]{three.png}
+\includegraphics[width=0.4\textwidth]{eight.png}
+\end{soln}
+
 \item (5 pts) Putting the two data files together (threes first, eights next) to form a $n \times D$ matrix $X$ where $n=400$ digits and $D=256$ pixels.  Note we use $n\times D$ size for $X$ instead of $D\times n$ to be consistent with the convention in linear regression.   The $i$th row of $X$ is $x_i^\top$, where $x_i \in \R^D$ is the $i$th image in the combined data set.
 Compute the sample mean $y = {1\over n} \sum_{i=1}^n x_i$.
 Visualize $y$ as a 16x16 gray scale image.
 
+\begin{soln}
+\includegraphics[width=0.4\textwidth]{q42.png}
+\end{soln}
+
 \item (10 pts) Center $X$ using $y$ above.  Then form the sample covariance matrix $S={X^\top X \over n-1}$.
 Show the 5x5 submatrix $S(1\ldots 5, 1 \ldots 5)$.
+
+\begin{soln}
+$
+\begin{bmatrix}
+ 87.46948912 &227.6370481   &57.48734107   &6.66785003 &  -1.99574334\\
+ 227.6370481 &  1288.66263787 & 448.44448912&   72.46379442 &   -8.71870787\\
+ 57.48734107 & 448.44448912 & 866.12206744 &305.86639285 & 13.6765041 \\
+  6.66785003 &  72.46379442 &305.86639285& 526.20107613 & 228.00078699\\
+ -1.99574334 &  -8.71870787  &13.6765041&  228.00078699 & 363.18351811
+\end{bmatrix}
+$
+\end{soln}
 
 \item (10 pts) Use appropriate software to compute the two largest eigenvalues $\lambda_1 \ge \lambda_2$ and the corresponding eigenvectors $v_1, v_2$ of $S$.
 For example, in Matlab one can use eigs(S,2).  
